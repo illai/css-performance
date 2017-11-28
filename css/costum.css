@@ -1,0 +1,33 @@
+
+.reduced-image {
+    width: 60%;
+}
+
+.fragment.grow-and-highlight {
+    text-align: left; 
+    margin-bottom: .5em;
+    transform-origin: left;
+}
+
+.reveal code.monospace {
+    font-family: monospace;
+    font-size: .8em;
+}
+
+.reveal section img.inline-image {
+    width: 17%;
+    display: inline-block;
+    vertical-align: baseline;
+    border: 0;
+    background: none;
+    margin: 0 15px 0 0;
+}
+
+.reveal p.heavy-text-page {
+    font-size: .6em;
+}
+
+.reveal p.left-p {
+    text-align: left;
+    line-height: 1.3em;
+}

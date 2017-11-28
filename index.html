@@ -1,0 +1,396 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>css-performance</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/moon.css">
+    <link rel="stylesheet" href="css/costum.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>CSS Performance</h1>
+          <img src="./assets/images/welcome-slide.gif" />
+        </section>
+        
+          <!-- Part 1 -->
+        <section>
+          <section>
+            <h3>What The #%&amp;@ ?</h3>
+            <img src="./assets/images/why.gif" class="reduced-image" />
+          </section>
+
+          <section>
+            <h3>Why are we discussing CSS performance?</h3>
+            <ul>
+              <li class="fragment fade-in">Web pages styling has become more rich and complex</li>
+              <li class="fragment fade-in">This is a point we are rarely considering while coding</li>
+              <li class="fragment fade-in">It matters</li>
+            </ul>
+          </section>
+
+          <section>
+              <h3>What we are referring to when we are talking about CSS performance?</h3>
+              <div class="fragment grow grow-and-highlight">
+                <span class="fragment highlight-red">1. Page load</span>
+              </div>
+              <div class="fragment grow grow-and-highlight">
+                  <span class="fragment highlight-red">2. Page rendering</span>
+                </div>
+                <div class="fragment grow grow-and-highlight">
+                    <span class="fragment highlight-red">3. Runtime performance</span>
+                </div>
+            </section>
+        </section>
+        <!-- Part 1 -->
+
+        <!-- Part 2 -->
+        <section>
+          <h3>Let's Break it down to specific problems</h3>
+        </section>
+        <!-- Part 2 -->
+
+        <!-- Part 3 -->
+        <section>
+
+              <section>
+                <h3>Page Load</h3>
+                <img src="./assets/images/page-load.gif" class="reduced-image" />
+              </section>
+
+              <section>
+                <h3>How CSS affects page load</h3>
+                <p class="fragment fade-in">
+                  It's mostly caused by dead code
+                </p>
+                <p class="fragment fade-in">
+                    And by very large CSS files
+                </p>
+              </section>
+
+              <section>
+                  <h3>What can we do about It?</h3>
+                  <p class="fragment fade-in">
+                      Mmm... unfortunately, not much.
+                  </p>
+                  <p class="fragment fade-in">
+                    Use CSS modules (or other CSS framework that allows style scoping).
+                  </p>
+                  <p class="fragment fade-in">
+                    *CSS Tree shaking.
+                  </p>
+                  
+                  <p class="fragment fade-in">
+                      Be responsible.
+                  </p>
+                </section>
+
+        </section>
+        <!-- Part 3 -->
+
+        <!-- Part 4 -->
+        <section>
+          <section>
+            <h3>Page Rendering</h3>
+            <img src="./assets/images/rendering.gif" class="reduced-image" />
+          </section>
+
+          <section>
+              <h3>Here there is a lot going on...</h3>
+              <p class="fragment fade-in">
+                Let's break down the rendering process and understand what is happening in each phase.
+            </p>
+            <p class="fragment fade-in">
+              So. The <code class="monospace">"http"</code> call is sent from the user's end, and a response with an <code class="monospace">"HTML"</code> page sent back.<br />
+              <span class="fragment fade-in">And...</span>
+            </p>
+          </section>
+
+          <section data-transition="slide-in fade-out">
+            <img src="./assets/images/crp_1.jpg" />
+          </section>
+
+          <section data-transition="fade-in">
+            <img src="./assets/images/crp_2.jpg" />
+          </section>
+
+          <section data-transition="fade-in">
+            <img src="./assets/images/crp_3.jpg" />
+          </section>
+
+          <section data-transition="fade-in">
+            <img src="./assets/images/tokanizationAndTreeBuilding.jpg" />
+          </section>
+
+          <section data-transition="fade-in">
+            <h3>&lt;HTML&gt; Aside</h3>
+            <p class="fragment fade-in">
+              Every HTML element has to be parsed, tokenized and registered to the DOM.
+              <br />
+              Try to be as thrifty as possible with them.
+            </p>
+          </section>
+
+          <section data-transition="fade-in">
+            <img src="./assets/images/tokanizationAndStyleCalculation.jpg" />
+          </section>
+
+          <section data-transition="slide-in fade-out">
+            <h3>
+              <img src="./assets/images/skull.png" class="inline-image" />
+              Warning
+            </h3>
+            <p class="fragment fade-in">
+              CSS is a DOM rendring blocker. <u>Never load styles inside the <code class="monospace">&lt;body&gt;</code> tag</u>
+            </p>
+          </section>
+          
+          <section data-transition="slide-in fade-out">
+            <img src="./assets/images/crp_4.jpg" />
+          </section>
+
+          <section data-transition="fade-in">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/lvb06W_VKVE?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+            <br />
+            <small>developers.google.com@YouTube</small>
+          </section>
+
+          <section data-transition="slide-in fade-out">
+            <img src="./assets/images/crp_5.jpg" />
+          </section>
+
+        </section>
+        <!-- Part 4 -->
+
+        <!-- Part 5 -->
+        <section>
+          <section>
+            <h3>Run time performance</h3>
+            <img src="./assets/images/runtime.gif" class="reduced-image" />
+          </section>
+
+          <section>
+              <h3>Layout/Reflow</h3>
+              <p class="fragment fade-in" style="font-size: 35px;">
+                In the layout phase each of the DOM elements gets its height/width/positioning.
+              </p>
+              <p class="fragment fade-in" style="font-size: 35px;">
+                  Layout is a recursive process. It begins at the root renderer, which corresponds to the <code class="monospace">&lt;html&gt;</code> 
+                  element of the HTML document. Layout continues recursively through some or all of the frame hierarchy, computing geometric information 
+                  for each renderer that requires it.
+              </p>
+              <p class="fragment fade-in" style="font-size: 35px;">
+                The layout is still not displaying anything to the screen.<br />
+                This is usually the most "expensive" process. 
+              </p>
+          </section>
+
+          <section data-transition="slide-in fade-out">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/ZTnIxIA5KGw?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+            <br />
+            <small>Gecko Reflow Visualization - mozilla.org</small>
+          </section>
+
+          <section>
+              <h3>Painting</h3>
+              <p class="fragment fade-in" style="font-size: 35px;">
+                In the painting stage, the render tree is traversed and the renderer's "paint()" 
+                method is called to display content on the screen.
+              </p>
+          </section>
+
+          <section>
+            <h3>Composite</h3>
+            <p class="fragment fade-in" style="font-size: 35px;">
+              The painting stage is creating a stack of layers, 
+              eache layer is affecting and affected by the ones above 
+              and below it on the display stack.
+            </p>
+            <p class="fragment fade-in" style="font-size: 35px;">
+              The composite stage is "flatning" all these layers to one image for better performance 
+              (It is important especially on page scroll for example).
+            </p>
+          </section>
+
+          <section>
+            <h3>So..., whay sould we care?</h3>
+            <ul>
+              <li class="fragment fade-in">
+                Some of these stages are more expensive than others.
+              </li>
+              <li class="fragment fade-in">
+                Different CSS attributes triggers these stages differently
+              </li>
+              <li class="fragment fade-in">
+                Using CSS attributes wisely can improve rendering and runtime performance.
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <iframe src="https://csstriggers.com/" width="600" height="460" frameborder="0"></iframe>
+            <br />
+            <small>csstriggers.com</small>
+          </section>
+
+        </section>
+        <!-- Part 5 -->
+
+        <section>
+          <section>
+            <h2>Now Tldr;</h2>
+          </section>
+
+          <section>
+            <h3>Css can affect performance in 3 points</h3>
+            <ol>
+              <li class="fragment grow">Page Load</li>
+              <li class="fragment grow">Page Rendering</li>
+              <li class="fragment grow">Runtime Performance</li>
+            </ol>
+          </section>
+
+          <section>
+            <p class="left-p">
+              <b>For better page load:</b><br />Don't leave the dead laying down in the field.<br />
+              <span class="fragment fade-in">Dead code will affect performance</span>
+            </p>
+          </section>
+
+          <section>
+            <p class="left-p">
+              <b>For better page rendering:</b><br/>
+              CSS linking and <code class="monospace">&lt;style&gt;</code> blocks, should be placed only 
+              in the <code class="monospace">&lt;head&gt;</code> section<br/>
+              Be thrifty with your DOM elements<br />
+              Don't leave the dead laying down in the field.<br />
+              <span class="fragment fade-in">Here as well, dead code will affect performance</span>
+            </p>
+          </section>
+
+          <section>
+            <p class="left-p">
+              <b>For better runtime performance:</b><br />
+              If you are going to animate it, check what it triggers.
+            </p>
+          </section>
+
+        </section>
+
+        <!-- Part 5 -->
+        <section>
+            <section>
+            <h3>Rersources</h3>
+            <p class="heavy-text-page">
+                <a href="https://medium.freecodecamp.org/its-not-dark-magic-pulling-back-the-curtains-from-your-stylesheets-c8d677fa21b2" target="_blank">
+                  CSS Isn’t Black Magic - freeCodeCamp, Medium
+                </a> 
+                - An article that explains in a very straight forward way how HTML and CSS are rendered in the browser with some nice tips about positioning, 
+                z-index and more on it’s end (2016)
+            </p>
+
+            <p class="heavy-text-page">
+                <a href="https://benfrain.com/css-performance-revisited-selectors-bloat-expensive-styles/#h-H1_0" target="_blank">
+                  CSS performance revisited: selectors, bloat and expensive styles 
+                </a>
+                - slightly old but very nice and  in depth article from Ben Frain’s blog about CSS performance with examples and tests (2014)
+            </p>
+
+            <p class="heavy-text-page">
+                <a href="https://www.html5rocks.com/en/tutorials/internals/howbrowserswork/" target="_blank">
+                  How Browsers Work: Behind the scenes of modern web browsers 
+                </a>
+                - Also old but very interesting article by Tali Garsiel and Paul Irish taken from HTML5 Rocks about how browsers work and rendering HTML and CSS
+            </p>
+
+            <p class="heavy-text-page"> 
+                <a href="https://css-tricks.com/case-study-boosting-front-end-performance/#article-header-id-14" target="_blank">
+                  A Case Study on Boosting Front-End Performance 
+                </a>
+                - By Declan Rek from August 18, 2016. This article has nice section about CSS Lazy load
+            </p>
+
+            <p class="heavy-text-page"> 
+                <a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction" target="_blank">
+                  Render-tree Construction, Layout, and Paint
+                </a>
+                - By Ilya Grigorik
+            </p>
+
+            <p class="heavy-text-page">
+                <a href="https://developers.google.com/web/updates/2013/10/Flexbox-layout-isn-t-slow" target="_blank">
+                  Flexbox layout isn't slow 
+                </a>
+                - By Paul Irish
+            </p>
+
+            <p class="heavy-text-page">
+              <a href="https://www.youtube.com/playlist?list=PL_ihuhBCGAwX8f1RCjlC5BNgghkkDeXSs" target="_blank">My Very own YouTube Channel about CSS and DOM Performance</a>
+            </p>
+          </section>
+        </section>
+        <!-- Part 5 -->
+
+        <section>
+          <h3>Thanks</h3>
+          <img src="./assets/images/thanks.gif" class="reduced-image" />
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+      }
+      var role = getParameterByName('role');
+      role = role === 'master' ? role : 'client';
+
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+        multiplex: {
+          secret: '15111628431655693019',
+          id: 'ed99b3fe71d4946b',
+          url: 'https://reveal.302.at'
+        },
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'assets/lib/socket.io.min.js', async: true },
+          { src: 'plugin/multiplex/' + role + '.js', async: true },
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>
